@@ -9,6 +9,7 @@ void calc_esfera(float r, float* area, float *volume){
     *volume = (4 * PI * r * r * r) / 3;
 }
 
+
 int raizes(float a, float b, float c, float* x1, float* x2){
     float delta = 0;
     delta = pow(b, 2) - (4 * a * c);
@@ -21,6 +22,7 @@ int raizes(float a, float b, float c, float* x1, float* x2){
     return 1;
 }
 
+
 int pares(int n, int* vet){
     int i, par = 0;
 
@@ -31,6 +33,7 @@ int pares(int n, int* vet){
     return par;
 }
 
+
 void inverte(int n, int* vet){
     int i, j;
     for(i = 0; i < n/2; i++){
@@ -39,6 +42,7 @@ void inverte(int n, int* vet){
         vet[i] = j;
     }
 }
+
 
 double avalia(double* poli, int grau, double x){
     int i, j;
@@ -49,19 +53,8 @@ double avalia(double* poli, int grau, double x){
     return soma;
 }
 
-//NAO PRECISAVA ALOCAR MEMORIA PARA O NOVO VETOR, JA QUE EH UMA ESPECIE DE COPIA DO OUTRO
-// int** inverte2(int n, int* vet){
-//     int** vet2 = (int**) malloc(sizeof(int*) * n);
-//     int i, j;
-//     for(i = 0; i < n; i++){
-//         vet2[i] = (int*) malloc(sizeof(int));
-//     }
-//     for(i = 0; i < n; i++){
-//         vet2[i] = &vet[i];
-//     }
-//     return vet2;
-// }
 
+//NAO PRECISAVA ALOCAR MEMORIA PARA O NOVO VETOR, JA QUE EH UMA ESPECIE DE COPIA DO OUTRO
 int** inverte2(int n, int* vet){
     int** vet2 = (int**) malloc(sizeof(int*) * n);
     int i, j;
@@ -88,57 +81,60 @@ int main(){
 
     //ponto 1 (area e volume esfera)
 
-    // float area, volume, raio;
-    // printf("Insira o raio da esfera: ");
-    // scanf("%f", &raio);
-    // calc_esfera(raio, &area, &volume);
-    // //area = volume;   atribui o valor numerico
-    // printf("A area e o volume da esfera de raio %.2f, sao, respectivamente, %.2f e %.2f.\n", raio, area, volume);
+    float area, volume, raio;
+    printf("Insira o raio da esfera: ");
+    scanf("%f", &raio);
+    calc_esfera(raio, &area, &volume);
+    //area = volume;   atribui o valor numerico
+    printf("A area e o volume da esfera de raio %.2f, sao, respectivamente, %.2f e %.2f.\n", raio, area, volume);
 
 
 
-    // //ponto 2 (calcular raizes de uma equacao)
+    //ponto 2 (calcular raizes de uma equacao)
 
-    // float a, b, c, x1, x2;
-    // int temRaiz = 0;
-    // printf("Insira os componentes da equacao: ");
-    // scanf("%f %f %f", &a, &b, &c);
-    // temRaiz = raizes(a, b, c, &x1, &x2);
-    // if(temRaiz) printf("As raizes da equacao, sao, respectivamente, %.2f e %.2f.\n", x1, x2);
-    // else printf("A equacao nao possui raizes\n");
+    float a, b, c, x1, x2;
+    int temRaiz = 0;
+    printf("Insira os componentes da equacao: ");
+    scanf("%f %f %f", &a, &b, &c);
+    temRaiz = raizes(a, b, c, &x1, &x2);
+
+    if(temRaiz) printf("As raizes da equacao, sao, respectivamente, %.2f e %.2f.\n", x1, x2);
+    else printf("A equacao nao possui raizes\n");
 
 
 
-    // //ponto 3 (quantidade de pares em um vetor)
+    //ponto 3 (quantidade de pares em um vetor)
 
     int n, i, par;
-    // printf("Insira o tamanho do vetor: ");
-    // scanf("%d", &n);
-    // int *vet = (int*) malloc(sizeof(int) * n);
-    // for(i = 0; i < n; i++){
-    //     scanf("%d", &vet[i]);
-    // }
-    // par = pares(n, vet);
-    // printf("A quantidade de numeros pares no vetor eh: %d\n", par);
-    // free(vet);
+    printf("Insira o tamanho do vetor: ");
+    scanf("%d", &n);
+
+    int *vet = (int*) malloc(sizeof(int) * n);
+    for(i = 0; i < n; i++){
+        scanf("%d", &vet[i]);
+    }
+
+    par = pares(n, vet);
+    printf("A quantidade de numeros pares no vetor eh: %d\n", par);
+    free(vet);
 
 
 
-    // //ponto 4 (inverter as posicoes do vetor)
+    //ponto 4 (inverter as posicoes do vetor)
 
-    // printf("Insira o tamanho do vetor: \n");
-    // scanf("%d", &n);
-    // int *vet2 = (int*) malloc(sizeof(int) * n);
-    // for(i = 0; i < n; i++){
-    //     scanf("%d", &vet2[i]);
-    // }
-    // inverte(n, vet2);
-    // printf("Vetor invertido:");
-    // for(i = 0; i < n; i++){
-    //     printf(" %d", vet2[i]);
-    // }
-    // printf("\n");
-    // free(vet2);
+    printf("Insira o tamanho do vetor: \n");
+    scanf("%d", &n);
+    int *vet2 = (int*) malloc(sizeof(int) * n);
+    for(i = 0; i < n; i++){
+        scanf("%d", &vet2[i]);
+    }
+    inverte(n, vet2);
+    printf("Vetor invertido:");
+    for(i = 0; i < n; i++){
+        printf(" %d", vet2[i]);
+    }
+    printf("\n");
+    free(vet2);
 
 
 
@@ -162,34 +158,31 @@ int main(){
     free(poli);
 
 
+    
     //desafio
 
-    // printf("Insira o tamanho do vetor: \n");
-    // scanf("%d", &n);
-    // int *vet3 = (int*) malloc(sizeof(int) * n);
-    // for(i = 0; i < n; i++){
-    //     scanf("%d", &vet3[i]);
-    // }
+    printf("Insira o tamanho do vetor: \n");
+    scanf("%d", &n);
+    int *vet3 = (int*) malloc(sizeof(int) * n);
+    for(i = 0; i < n; i++){
+        scanf("%d", &vet3[i]);
+    }
 
-    // int **vet3_1 = inverte2(n, vet3);
+    int **vet3_1 = inverte2(n, vet3);
 
-    // printf("Vetor ordenado:");
-    // for(i = 0; i < n; i++){
-    //     printf(" %d", *vet3_1[i]);
-    // }
-    // printf("\n");
-    // printf("Vetor normal:");
-    // for(i = 0; i < n; i++){
-    //     printf(" %d", vet3[i]);
-    // }
-    // printf("\n");
-    // free(vet3);
-    // free(vet3_1);
-
-    //NAO LIBERA MEMORIA, PQ NAO ALOCOU
-    // for(i = 0; i < n; i++){
-    //     free(vet3_1[i]);
-    // }
-
+    printf("Vetor ordenado:");
+    for(i = 0; i < n; i++){
+        printf(" %d", *vet3_1[i]);
+    }
+    printf("\n");
+    printf("Vetor normal:");
+    for(i = 0; i < n; i++){
+        printf(" %d", vet3[i]);
+    }
+    printf("\n");
+    free(vet3);
+    free(vet3_1);
+    //NAO LIBERA MEMORIA DE CADA ITEM DO VET3_1, PQ NAO ALOCOU
+    
     return 0;
 }

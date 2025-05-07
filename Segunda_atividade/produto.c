@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "produto.h"
 
-char* leLinha(){
+char* lerLinha(){
     char temp[100];
     scanf(" %99[^\n]", temp);
     char* str = strdup(temp);
     return str;
 }
 
-tProduto* criaEstoque(){
+tProduto* criaProduto(){
     tProduto *produto = malloc(sizeof(struct Produto*));
 
     printf("Insira o nome do produto:\n");
-    produto->nome = leLinha();
+    produto->nome = lerLinha();
 
     printf("Insira o valor do produto:\n");
     scanf("%d", &produto->valor);

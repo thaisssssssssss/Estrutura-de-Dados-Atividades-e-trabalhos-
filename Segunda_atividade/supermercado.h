@@ -11,7 +11,6 @@ struct Supermercado{
     int qtdfiliais;
 };
 
-char* leLinha();
 tSupermercado* criaMercado();
 tSupermercado* criaFiliaisMercado(tSupermercado* mercado);
 void imprimeMercado(tSupermercado* mercado);

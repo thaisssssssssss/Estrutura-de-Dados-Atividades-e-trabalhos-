@@ -9,8 +9,8 @@ struct Item{
     tProduto* produto;
 };
 
-char* leLinha();
-tItem* criaFilial();
+tItem* criaItem();
 void imprimeItem(tItem* item);
 void liberaItem(tItem* item);
+
 #endif

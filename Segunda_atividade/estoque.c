@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "estoque.h"
 
-char* leLinha(){
-    char temp[100];
-    scanf(" %99[^\n]", temp);
-    char* str = strdup(temp);
-    return str;
-}
 
 tEstoque* criaEstoque(){
     tEstoque *estoque = malloc(sizeof(struct Estoque*));
@@ -40,7 +35,7 @@ void liberaEstoque(tEstoque* estoque){
         if(estoque->itens != NULL){
             int i;
             for(i = 0; i < estoque->qtdItens; i++){
-                liberaFiliais(estoque->itens[i]);
+                liberaItem(estoque->itens[i]);
             }
         }
         free(estoque);

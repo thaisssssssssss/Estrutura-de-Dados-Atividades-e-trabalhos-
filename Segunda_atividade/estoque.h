@@ -10,7 +10,6 @@ struct Estoque{
     int qtdItens;
 };
 
-char* leLinha();
 tEstoque* criaEstoque();
 void imprimeEstoque(tEstoque* estoque);
 void liberaEstoque(tEstoque* estoque);

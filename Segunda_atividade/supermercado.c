@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "supermercado.h"
 
 typedef struct Supermercado tSupermercado;
 
-char* leLinha(){
-    char temp[100];
-    scanf(" %99[^\n]", temp);
-    char* str = strdup(temp);
-    return str;
-}
+// char* leLinha(){
+//     char temp[100];
+//     scanf(" %99[^\n]", temp);
+//     char* str = strdup(temp);
+//     return str;
+// }
 
 tSupermercado* criaMercado(){
     tSupermercado *mercado = malloc(sizeof(struct Supermercado*));
@@ -26,9 +27,9 @@ tSupermercado* criaFiliaisMercado(tSupermercado* mercado){
     printf("Insira a qtd de filiais:\n");
     scanf("%d", &mercado->qtdfiliais);
 
-    mercado->filiais = malloc(sizeof(struct Filial**) * qtdFiliais);
+    mercado->filiais = malloc(sizeof(struct Filial**) * mercado->qtdfiliais);
 
-    for(i = 0; i < qtdFiliais; i++){
+    for(i = 0; i < mercado->qtdfiliais; i++){
         mercado->filiais[i] = criaFilial();
     }
 
@@ -39,7 +40,7 @@ void imprimeMercado(tSupermercado* mercado){
     int i;
     printf("%s, Estoque Total: %d", mercado->nome, mercado->valorTotalEstoque);
     for(i = 0; i < mercado->qtdfiliais; i++){
-        imprimeFiliais(mercado->filiais[i]);
+        imprimeFilial(mercado->filiais[i]);
     }
 }
 
@@ -48,7 +49,7 @@ void liberaMercado(tSupermercado* mercado){
         if(mercado->filiais != NULL){
             int i;
             for(i = 0; i < mercado->qtdfiliais; i++){
-                liberaFiliais(mercado->filiais[i]);
+                liberaFilial(mercado->filiais[i]);
             }
         }
         free(mercado->nome);

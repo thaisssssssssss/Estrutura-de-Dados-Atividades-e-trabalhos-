@@ -8,8 +8,8 @@ struct Produto{
     int valor;
 };
 
-char* leLinha();
-tProduto* criaEstoque();
+char* lerLinha();
+tProduto* criaProduto();
 void imprimeProduto(tProduto* prod);
 void liberaProduto(tProduto* prod);
 

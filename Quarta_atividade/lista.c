@@ -104,3 +104,16 @@ void imprimeLista(Lista* l){
     }
 }
 
+void liberaLista(Lista* l){
+    Celula* c = l->prim;
+    Celula* prox;
+
+    while(c != NULL){
+        prox = c->prox;
+        liberaProduto(c->prod);
+        free(c);
+        c = prox;
+    }
+    free(l);
+}
+

@@ -29,7 +29,8 @@ int main(){
 
     Lista* lista = criaLista();
     insereProdutoLista(lista, prod1);
-    tProduto* p = retiraProdutoLista(lista, 1234);
+    //tProduto* p = retiraProdutoLista(lista, 1234);
+    liberaLista(lista);
     //imprimeProduto(p);
     //imprimeLista(lista);
 }

@@ -55,7 +55,7 @@ void cadastraGato(BanhoTosa* loja, Gato* cat){
     if(retornaAgressividadeGato(cat) == BRAVO){
         loja->listaAgressivos = adicionaGatoLista(loja->listaAgressivos, cat);
     }
-    else adicionaGatoLista(loja->listaMansos, cat);
+    else loja->listaMansos = adicionaGatoLista(loja->listaMansos, cat);
 }
 
 
@@ -66,12 +66,18 @@ void cadastraGato(BanhoTosa* loja, Gato* cat){
 * pos-condicao: animal deve estar na lista correta, de acordo com seu nível de agressividade */
 void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat){
     if(retornaAgressividadeGato(cat) == BRAVO){
-        int certo = confereGatoEstaNaListaCerta(loja->listaAgressivos, cat);
-        if(!certo) adicionaGatoLista(loja->listaMansos, cat);
+        int confere = confereAnimalEstaNaListaErrada(loja->listaMansos, cat, GATO, BRAVO);
+        if(confere){
+            loja->listaMansos = retiraAnimalLista(loja->listaMansos, cat, GATO);
+            loja->listaAgressivos = adicionaGatoLista(loja->listaAgressivos, cat);
+        }
     }
     else {
-        int certo = confereGatoEstaNaListaCerta(loja->listaMansos, cat); //confere se o gato esta na lista certa, se nao tiver, tira ele da lista e retorna 0
-        if(!certo) adicionaGatoLista(loja->listaAgressivos, cat);
+        int confere = confereAnimalEstaNaListaErrada(loja->listaAgressivos, cat, GATO, MANSO); //confere se o gato esta na lista certa, se nao tiver, tira ele da lista e retorna 0
+        if(confere){
+            loja->listaAgressivos = retiraAnimalLista(loja->listaAgressivos, cat, GATO);
+            loja->listaMansos = adicionaGatoLista(loja->listaMansos, cat);
+        }
     }
 }
 

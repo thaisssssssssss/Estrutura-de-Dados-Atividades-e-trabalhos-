@@ -15,5 +15,6 @@ void liberaCachorro(Cachorro* c);
 int retornaAgressividadeCachorro(Cachorro* c);
 void imprimeCachorro(Cachorro* c);
 void atribuiNivelAgressividadeCachorro(Cachorro* c, int agressividade);
+int comparaNomeCachorro(Cachorro* c1, Cachorro* c2);
 
 #endif

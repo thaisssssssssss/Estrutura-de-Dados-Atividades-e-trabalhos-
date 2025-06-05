@@ -15,6 +15,6 @@ void liberaGato(Gato* gato);
 int retornaAgressividadeGato(Gato* g);
 void imprimeGato(Gato* g);
 void atribuiNivelAgressividadeGato(Gato* g, int agressividade);
-
+int comparaNomeGato(Gato* g1, Gato* g2);
 
 #endif

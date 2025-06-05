@@ -31,3 +31,7 @@ void imprimeCachorro(Cachorro* c){
 void atribuiNivelAgressividadeCachorro(Cachorro* c, int agressividade){
     c->agressividade = agressividade;
 }
+
+int comparaNomeCachorro(Cachorro* c1, Cachorro* c2){
+    return (strcmp(c1->nome, c2->nome) == 0);
+}

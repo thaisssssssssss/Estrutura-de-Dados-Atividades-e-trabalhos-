@@ -41,9 +41,9 @@ BanhoTosa* inicBanhoTosa(char* nome){
 * pos-condicao: loja contém o animal e uma de suas listas, dependendo do nível de agressividade do animal  */
 void cadastraCachorro(BanhoTosa* loja, Cachorro* dog){
     if(retornaAgressividadeCachorro(dog) == BRAVO){
-        loja->listaAgressivos = adicionaCachorroLista(loja->listaAgressivos, dog);
+        loja->listaAgressivos = adicionaAnimalLista(loja->listaAgressivos, dog, CACHORRO);
     }
-    else adicionaCachorroLista(loja->listaMansos, dog);
+    else adicionaAnimalLista(loja->listaMansos, dog, CACHORRO);
 }
 
 /* Insere o cachorro em uma das listas de animais, dependendo do seu nível de agressividade
@@ -53,9 +53,9 @@ void cadastraCachorro(BanhoTosa* loja, Cachorro* dog){
 * pos-condicao: loja contém o animal e uma de suas listas, dependendo do nível de agressividade do animal  */
 void cadastraGato(BanhoTosa* loja, Gato* cat){
     if(retornaAgressividadeGato(cat) == BRAVO){
-        loja->listaAgressivos = adicionaGatoLista(loja->listaAgressivos, cat);
+        loja->listaAgressivos = adicionaAnimalLista(loja->listaAgressivos, cat, GATO);
     }
-    else loja->listaMansos = adicionaGatoLista(loja->listaMansos, cat);
+    else loja->listaMansos = adicionaAnimalLista(loja->listaMansos, cat, GATO);
 }
 
 
@@ -69,14 +69,14 @@ void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat){
         int confere = confereAnimalEstaNaListaErrada(loja->listaMansos, cat, GATO, BRAVO);
         if(confere){
             loja->listaMansos = retiraAnimalLista(loja->listaMansos, cat, GATO);
-            loja->listaAgressivos = adicionaGatoLista(loja->listaAgressivos, cat);
+            loja->listaAgressivos = adicionaAnimalLista(loja->listaAgressivos, cat, GATO);
         }
     }
     else {
         int confere = confereAnimalEstaNaListaErrada(loja->listaAgressivos, cat, GATO, MANSO); //confere se o gato esta na lista certa, se nao tiver, tira ele da lista e retorna 0
         if(confere){
             loja->listaAgressivos = retiraAnimalLista(loja->listaAgressivos, cat, GATO);
-            loja->listaMansos = adicionaGatoLista(loja->listaMansos, cat);
+            loja->listaMansos = adicionaAnimalLista(loja->listaMansos, cat, GATO);
         }
     }
 }
@@ -86,7 +86,22 @@ void atualizaSituacaoGato(BanhoTosa* loja, Gato* cat){
 * output: nenhum
 * pre-condicao: loja alocada e animal alocado
 * pos-condicao: animal deve estar na lista correta, de acordo com seu nível de agressividade */
-void atualizaSituacaoCachorro(BanhoTosa* loja, Cachorro* dog);
+void atualizaSituacaoCachorro(BanhoTosa* loja, Cachorro* dog){
+    if(retornaAgressividadeCachorro(dog) == BRAVO){
+        int confere = confereAnimalEstaNaListaErrada(loja->listaMansos, dog, CACHORRO, BRAVO);
+        if(confere){
+            loja->listaMansos = retiraAnimalLista(loja->listaMansos, dog, CACHORRO);
+            loja->listaAgressivos = adicionaAnimalLista(loja->listaAgressivos, dog, CACHORRO);
+        }
+    }
+    else {
+        int confere = confereAnimalEstaNaListaErrada(loja->listaAgressivos, dog, CACHORRO, MANSO); //confere se o gato esta na lista certa, se nao tiver, tira ele da lista e retorna 0
+        if(confere){
+            loja->listaAgressivos = retiraAnimalLista(loja->listaAgressivos, dog, CACHORRO);
+            loja->listaMansos = adicionaAnimalLista(loja->listaMansos, dog, CACHORRO);
+        }
+    }
+}
 
 
 /* Imprime os dados da Loja (nome, e conteúdo das listas)
@@ -95,7 +110,7 @@ void atualizaSituacaoCachorro(BanhoTosa* loja, Cachorro* dog);
 * pre-condicao: loja alocada
 * pos-condicao: nenhuma alteração feita nos conteúdos das estruturas de dados */
 void imprimeBanhoTosa(BanhoTosa* loja){
-    printf("Nome loja: %s\n\n", loja->nome);
+    printf("\nNome loja: %s\n\n", loja->nome);
     printf("Lista Mansos:\n");
     imprimeLista(loja->listaMansos);
     printf("\nLista Agressivos:\n");
@@ -110,10 +125,10 @@ void imprimeBanhoTosa(BanhoTosa* loja){
 * pre-condicao: loja alocada
 * pos-condicao: nenhuma alteração feita nos conteúdos das estruturas de dados */
 float calculaReceita(BanhoTosa* loja){
-    int cachorrosBravos = returnQtdCachorros(loja->listaAgressivos);
-    int cachorrosMansos = returnQtdCachorros(loja->listaMansos);
-    int gatosBravos = returnQtdGatos(loja->listaAgressivos);
-    int gatosMansos = returnQtdGatos(loja->listaMansos);
+    int cachorrosBravos = returnQtdPorEspecie(loja->listaAgressivos, CACHORRO);
+    int cachorrosMansos = returnQtdPorEspecie(loja->listaMansos, CACHORRO);
+    int gatosBravos = returnQtdPorEspecie(loja->listaAgressivos, GATO);
+    int gatosMansos = returnQtdPorEspecie(loja->listaMansos, GATO);
 
     float valor = (float)((gatosMansos * 30) + (cachorrosMansos * 40)) + (float)((gatosBravos * 35) + (cachorrosBravos * 45));
     return valor;

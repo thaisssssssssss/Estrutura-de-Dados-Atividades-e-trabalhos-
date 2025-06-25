@@ -153,7 +153,7 @@ int main(){
     scanf("%lf", &x);
 
     result = avalia(poli, n, x);
-    printf("Resultado da avaliacao do polinomio: %.2f", result);
+    printf("\nResultado da avaliacao do polinomio: %.2f", result);
 
     free(poli);
 

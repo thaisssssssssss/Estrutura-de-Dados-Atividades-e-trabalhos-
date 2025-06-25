@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "produto.h"
 #include "lista.h"
+#include "testelista.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -13,6 +14,7 @@ char* lerLinha(){
 
 int main(){
     int qtdProd, i;
+    printf("Digite a quantidade de produto:");
     scanf("%d", &qtdProd);
 
     Lista* lista = criaLista();
@@ -31,13 +33,26 @@ int main(){
         scanf("%d", &codigo);
     
         tProduto* prod1 = criaProduto(nome, valor, codigo);
-        insereProdutoLista(lista, prod1);
+        adicionaElementoListaFim(lista, prod1);
 
     }
 
+    printf("Digite a quantidade de produtos que deseja procurar:\n");
+    scanf("%d", &qtdProd);
 
+    for(i = 0; i < qtdProd; i++){
+        int codigo;
+        printf("Digite o codigo do produto:\n");
+        scanf("%d", &codigo);
+
+        tProduto* p = retiraElementoLista(lista, codigo);
+
+        if(p != NULL){
+            imprimeProduto(p);
+            liberaProduto(p);
+        }
+    }
+
+    imprimeLista(lista);
     liberaLista(lista);
-    //tProduto* p = retiraProdutoLista(lista, 1234);
-    //imprimeProduto(p);
-    //imprimeLista(lista);
 }

@@ -44,10 +44,6 @@ void insereComidaLista(Lista* l, void* comida, int tipo){
         return;
     }
 
-    // nova->prox = l->prim;
-    // l->prim->ant = nova;
-    // l->prim = nova;
-
     l->ult->prox = nova;
     nova->ant = l->ult;
     l->ult = nova;
@@ -94,43 +90,37 @@ void liberaLista(Lista* l){
 
 int confereComidaEstaNaLista(Lista* l, void* comida, int tipo){
     Celula* aux;
-
-    if(tipo){
-        for(aux = l->prim; aux != NULL; aux = aux->prox){
-            if(aux->tipo == VEGANA){
-                if(strcmp(retornaNomeComidaVegana(aux->comida), retornaNomeComidaVegana(comida)) == 0) return 1;
-            }
+    for(aux = l->prim; aux != NULL; aux = aux->prox){
+        if(aux->tipo == tipo){
+            if(comparaNomeComida(aux->comida, comida, tipo)) return 1;
         }
     }
-    else{
-        for(aux = l->prim; aux != NULL; aux = aux->prox){
-            if(aux->tipo == NVEG){
-                if(strcmp(retornaNomeComidaNaoVegana(aux->comida), retornaNomeComidaNaoVegana(comida)) == 0) return 1;
-            }
-        }
-    }
-
     return 0;
 }
 
+int comparaNomeComida(void* comida1, void* comida2, int tipo){
+    if(tipo == VEGANA){
+        return(strcmp(retornaNomeComidaVegana(comida1), retornaNomeComidaVegana(comida2)) == 0);
+    }
+    else if(tipo == NVEG){
+        return(strcmp(retornaNomeComidaVegana(comida1), retornaNomeComidaVegana(comida2)) == 0);       
+    }   
+}
 
 void retiraComidaDaLista(Lista* l, void* comida, int tipo){
     Celula* aux = l->prim;
 
     while(aux != NULL){
-        if(tipo == VEGANA){
-            if(aux->tipo == VEGANA){
-                if(strcmp(retornaNomeComidaVegana(aux->comida), retornaNomeComidaVegana(comida)) == 0) break;
-            }
-        }
-        else{
-            if(aux->tipo == NVEG){
-                if(strcmp(retornaNomeComidaNaoVegana(aux->comida), retornaNomeComidaNaoVegana(comida)) == 0) break;
-            }
+        if(aux->tipo == tipo){
+            if(comparaNomeComida(aux->comida, comida, tipo)) break;
         }
         aux = aux->prox;
     }
 
+    //nao esta na lista
+    if(aux == NULL) return;
+
+    //unica 
     if(aux == l->prim && aux == l->ult){
         l->prim = NULL;
         l->ult = NULL;
@@ -139,6 +129,7 @@ void retiraComidaDaLista(Lista* l, void* comida, int tipo){
         return;
     }
 
+    //primeira
     if(aux == l->prim){
         aux->prox->ant = NULL;
         l->prim = aux->prox;
@@ -147,6 +138,7 @@ void retiraComidaDaLista(Lista* l, void* comida, int tipo){
         return;
     }
 
+    //ultima
     if(aux == l->ult){
         aux->ant->prox = NULL;
         l->ult = aux->ant;
@@ -159,5 +151,4 @@ void retiraComidaDaLista(Lista* l, void* comida, int tipo){
     aux->ant->prox = aux->prox;
     l->tamanho--;
     free(aux);
-    
 }

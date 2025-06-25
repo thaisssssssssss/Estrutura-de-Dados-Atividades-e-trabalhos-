@@ -1,6 +1,7 @@
 #ifndef FILIAL_H
 #define FILIAL_H
 #include "estoque.h"
+#include "item.h"
 
 typedef struct Filial tFilial;
 
@@ -11,6 +12,9 @@ struct Filial{
 
 tFilial* criaFilial();
 char* leLinha();
+int retornaValorEstoqueFilial(tFilial* filial);
 void imprimeFilial(tFilial* filial);
 void liberaFilial(tFilial* filial);
+//tItem* procuraProdutoFiliais(tFilial* filial, char* nomeProduto);
+
 #endif

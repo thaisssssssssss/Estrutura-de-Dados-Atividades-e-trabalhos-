@@ -35,3 +35,4 @@ void atribuiNivelAgressividadeGato(Gato* g, int agressividade){
 int comparaNomeGato(Gato* g1, Gato* g2){
     return (strcmp(g1->nome, g2->nome) == 0);
 }
+

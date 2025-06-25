@@ -11,6 +11,10 @@ struct Estoque{
 };
 
 tEstoque* criaEstoque();
+int retornaValorEstoque(tEstoque* estoque);
 void imprimeEstoque(tEstoque* estoque);
 void liberaEstoque(tEstoque* estoque);
+//int corfirmaTemProdutoEstoque(tEstoque* estoque, char* nomeProduto);
+//tItem* retornaItem(tEstoque* estoque, char* nomeProduto);
+
 #endif

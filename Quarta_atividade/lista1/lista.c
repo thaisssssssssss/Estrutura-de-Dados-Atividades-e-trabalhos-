@@ -36,8 +36,8 @@ Lista* criaLista(){
 
 void insereProdutoLista(Lista* l, tProduto* prod){
     Celula* nova = malloc(sizeof(struct celula));
-    nova->prox = NULL;
     nova->prod = prod;
+    nova->prox = NULL;
     
     if(l->prim == NULL) l->prim = nova;
 
@@ -49,11 +49,19 @@ void insereProdutoLista(Lista* l, tProduto* prod){
     }
 }
 
+int confereTemProdutoLista(Lista* l, int codigo){
+    Celula* aux = l->prim;
+    while(aux != NULL && !comparaCodigo(aux->prod, codigo)){
+        aux = aux->prox;
+    }
+    return (aux != NULL);
+}
+
 tProduto* retiraProdutoLista(Lista* l, int codigo){
     Celula* p = l->prim;
     Celula* ant = NULL;
 
-    while(p->prox != NULL && !comparaCodigo(p->prod, codigo)){
+    while(p != NULL && !comparaCodigo(p->prod, codigo)){
         ant = p;
         p = p->prox;
     }

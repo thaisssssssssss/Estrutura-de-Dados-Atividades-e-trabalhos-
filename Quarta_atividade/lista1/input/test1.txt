@@ -1,0 +1,19 @@
+5
+arroz
+10
+1111
+feijao
+20
+2222
+canja
+30
+3333
+dadinho de tapioca
+40
+4444
+espinafre
+50
+5555
+2
+4444
+5555

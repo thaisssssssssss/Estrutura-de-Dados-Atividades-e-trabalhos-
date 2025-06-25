@@ -60,4 +60,11 @@ int confereComidaEstaNaLista(Lista* l, void* comida, int tipo);
 /// @param tipo vegana ou nao
 void retiraComidaDaLista(Lista* l, void* comida, int tipo);
 
+/// @brief compara o nome de duas comidas, diferenciando se sao ou nao veganas 
+/// @param comida1 
+/// @param comida2 
+/// @param tipo vegana ou nao
+/// @return 1 caso sejam iguais, 0 caso contrario
+int comparaNomeComida(void* comida1, void* comida2, int tipo);
+
 #endif

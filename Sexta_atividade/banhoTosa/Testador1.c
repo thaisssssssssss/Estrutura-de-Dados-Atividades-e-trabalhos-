@@ -9,7 +9,7 @@
 #include "BanhoTosa.h"
 #include "gato.h"
 #include "cachorro.h"
-#include "lista.h"
+#include "Lista.h"
 
 int main(int argc, const char * argv[]) {
 

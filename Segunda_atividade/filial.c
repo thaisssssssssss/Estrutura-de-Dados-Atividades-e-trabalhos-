@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "filial.h"
-
+#include "item.h"
 typedef struct Filial tFilial;
 
 char* leLinha(){
@@ -13,7 +13,7 @@ char* leLinha(){
 }
 
 tFilial* criaFilial(){
-    tFilial *f = malloc(sizeof(struct Filial*));
+    tFilial *f = malloc(sizeof(struct Filial));
 
     printf("Insira o nome da filial:\n");
     f->nome = leLinha();
@@ -23,8 +23,12 @@ tFilial* criaFilial(){
     return f;
 }
 
+int retornaValorEstoqueFilial(tFilial* filial){
+    return retornaValorEstoque(filial->estoque);
+}
+
 void imprimeFilial(tFilial* filial){
-    printf("Filial: %s", filial->nome);
+    printf("Filial: %s\n", filial->nome);
     imprimeEstoque(filial->estoque);
 }
 
@@ -35,3 +39,14 @@ void liberaFilial(tFilial* filial){
         free(filial);
     }
 }
+
+// tItem* procuraProdutoFiliais(tFilial* filial, char* nomeProduto){
+//     int temPrduto = corfirmaTemProdutoEstoque(filial->estoque, nomeProduto);
+//     if(temPrduto){
+//         printf("Produto encontrado na filial %s\n", filial->nome);
+//         tItem *item = retornaItem(filial->estoque, nomeProduto);
+//         return item;
+//     }
+//     return NULL;
+// }
+

@@ -11,7 +11,7 @@ char* lerLinha(){
 }
 
 tProduto* criaProduto(){
-    tProduto *produto = malloc(sizeof(struct Produto*));
+    tProduto *produto = malloc(sizeof(struct Produto));
 
     printf("Insira o nome do produto:\n");
     produto->nome = lerLinha();
@@ -23,9 +23,12 @@ tProduto* criaProduto(){
 }
 
 void imprimeProduto(tProduto* prod){
-    printf("%s, valor unitario: %d", prod->nome, prod->valor);
+    printf("%s, valor unitario: %d ", prod->nome, prod->valor);
 }
 
 void liberaProduto(tProduto* prod){
-    if(prod != NULL) free(prod);
+    if(prod != NULL){
+        free(prod->nome);
+        free(prod);
+    }
 }

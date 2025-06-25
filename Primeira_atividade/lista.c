@@ -13,11 +13,23 @@ struct listaDpl {
 };
 
 
+/**Cria uma lista vazia
+ * inputs: nao ha
+ * output: lista vazia = NULL
+ * pre-condicao: nenhuma
+ * pos-condicao: lista deve ser igual a NULL
+ */
 ListaDpl* criaLista(){
     return NULL;
 }
 
 
+/**Insere elemento no inicio da lista
+ * inputs: lista e elemento
+ * output: lista atualizada
+ * pre-condicao: lista l e elemento devem existir
+ * pos-condicao: lista deve existir e ser diferente de NULL
+ */
 ListaDpl* insereElementoListaInicio(ListaDpl* l, tProduto* prod){
     ListaDpl* nova = malloc(sizeof(struct listaDpl));
     nova->prod = prod;
@@ -29,6 +41,13 @@ ListaDpl* insereElementoListaInicio(ListaDpl* l, tProduto* prod){
 }
 
 
+
+/**Busca elemento na lista
+ * inputs: lista e codigo do elemento
+ * output: lista buscada ou NULL caso nao seja encontrada
+ * pre-condicao: lista l deve existir
+ * pos-condicao: retorna um ponteiro para a posicao desejada na lista 
+ */
 static ListaDpl* buscaElementoLista(ListaDpl* l, int codigo){
     ListaDpl* p;
     for(p = l; p != NULL; p = p->prox){
@@ -39,6 +58,13 @@ static ListaDpl* buscaElementoLista(ListaDpl* l, int codigo){
 }
 
 
+
+/**Retira elemento da lista
+ * inputs: lista e codigo do elemento
+ * output: lista atualizada
+ * pre-condicao: lista l deve existir
+ * pos-condicao: libera a posicao da lista desejada e retorna lista atualizada
+ */
 ListaDpl* retiraElementoLista(ListaDpl* l, int codigo){
     ListaDpl* p = buscaElementoLista(l, codigo);
 
@@ -63,12 +89,24 @@ ListaDpl* retiraElementoLista(ListaDpl* l, int codigo){
 }
 
 
+/**Imprime elemento da lista
+ * inputs: lista e codigo do elemento
+ * output: nao ha
+ * pre-condicao: lista l deve existir
+ * pos-condicao: nao ha
+ */
 void imprimeElementoPorCodigo(ListaDpl* l, int codigo){
     ListaDpl* p = buscaElementoLista(l, codigo);
     if(p != NULL) imprimeProduto(p->prod);
 }
 
 
+/**Imprime a lista
+ * inputs: lista l
+ * output: nao ha
+ * pre-condicao: lista l deve existir
+ * pos-condicao: nao ha
+ */
 void imprimeLista(ListaDpl* l){
     ListaDpl* aux;
     for(aux = l; aux != NULL; aux = aux->prox){
@@ -77,6 +115,12 @@ void imprimeLista(ListaDpl* l){
 }
 
 
+/**Libera a lista
+ * inputs: lista l
+ * output: nao ha
+ * pre-condicao: lista l deve existir
+ * pos-condicao: lista deve ter sido totalmente liberada da memoria
+ */
 void liberaLista(ListaDpl* l){
     ListaDpl* temp = l;
     ListaDpl* next;
@@ -88,4 +132,3 @@ void liberaLista(ListaDpl* l){
         free(next);
     }
 }
-

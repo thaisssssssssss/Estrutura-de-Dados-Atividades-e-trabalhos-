@@ -5,7 +5,7 @@
 
 
 tItem* criaItem(){
-    tItem *item = malloc(sizeof(struct Item*));
+    tItem *item = malloc(sizeof(struct Item));
 
     item->produto = criaProduto();
     printf("Insira a qtd de itens:\n");
@@ -17,7 +17,7 @@ tItem* criaItem(){
 void imprimeItem(tItem* item){
     printf("Item:");
     imprimeProduto(item->produto);
-    printf("quantidade: %d", item->qtd);
+    printf("quantidade: %d\n", item->qtd);
 
 }
 
@@ -27,3 +27,10 @@ void liberaItem(tItem* item){
         free(item);
     }
 }
+
+// int comparaProdutos(tItem* item, char* nomeProduto){
+//     if(strcmp(item->produto->nome, nomeProduto) == 0){
+//         return 1;
+//     }
+//     return 0;
+// }

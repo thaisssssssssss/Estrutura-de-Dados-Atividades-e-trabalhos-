@@ -12,5 +12,6 @@ struct Item{
 tItem* criaItem();
 void imprimeItem(tItem* item);
 void liberaItem(tItem* item);
+//int comparaProdutos(tItem* item, char* nomeProduto);
 
 #endif

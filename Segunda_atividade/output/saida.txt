@@ -1,0 +1,40 @@
+Insira o nome do mercado:
+Insira a qtd de filiais:
+Insira o nome da filial:
+Insira o valor do estoque:
+Insira a qtd de itens no estoque:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+Insira o nome da filial:
+Insira o valor do estoque:
+Insira a qtd de itens no estoque:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+Insira o nome do produto:
+Insira o valor do produto:
+Insira a qtd de itens:
+
+Carone, Estoque Total: 184500
+Filial: Jardim Camburi
+
+Estoque: 23000
+Item:Leite Integral Selita, valor unitario: 10 quantidade: 300
+Item:Presunto de Parma, valor unitario: 50 quantidade: 200
+Item:Queijo, valor unitario: 30 quantidade: 200
+Filial: Jardim da Penha
+
+Estoque: 161500
+Item:Biscoito, valor unitario: 5 quantidade: 2000
+Item:Presunto de Parma, valor unitario: 50 quantidade: 3000
+Item:Carne de Sol, valor unitario: 30 quantidade: 50

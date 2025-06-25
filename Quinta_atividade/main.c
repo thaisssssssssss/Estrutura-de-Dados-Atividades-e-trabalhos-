@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "produto.h"
-#include "lista.h"
+#include "listaD.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -22,7 +22,7 @@ int main(){
         printf("Insira a qtd de produtos:\n");
         scanf("%d", &qtdProd);
 
-        ListaDpl* lista = criaLista();
+        ListaD* lista = criaListaSEsemSentinela();
     
         for(i = 0; i < qtdProd; i++){
             char* nome;
@@ -50,11 +50,10 @@ int main(){
             int codigo;
             printf("Insira o codigo do produto que deseja retirar:\n");
             scanf("%d", &codigo);
+            imprimeElementoPorCodigo(lista, codigo);
             lista = retiraElementoLista(lista, codigo);
         }
         
-        //retiraElementoLista(lista, 1111);
-        // imprimeElementoPorCodigo(lista, 1111);
         imprimeLista(lista);
         liberaLista(lista);
     }

@@ -13,9 +13,11 @@ Arvore* criaArvoreVazia();
 Arvore* criaArvore(Aluno* aluno, Arvore* dir, Arvore* esq);
 
 void imprimeArvore(Arvore* arv);
-
+int estaVaziaArvore(Arvore* arv);
 Arvore* insereAlunoArvore(Arvore* arv, Aluno* aluno);
 
 Aluno* buscaAlunoArvore(Arvore* arv, int matricula);
+Arvore* retiraAlunoArvore(Arvore* arv, int matricula);
+Arvore* liberaArvore(Arvore* arv);
 
 #endif

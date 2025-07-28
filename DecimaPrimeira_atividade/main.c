@@ -1,3 +1,8 @@
+// main.c
+//
+// Criado por Thais Gomes Brandao no dia 27/07/2025
+//
+
 #include "arvore.h"
 
 int main(){

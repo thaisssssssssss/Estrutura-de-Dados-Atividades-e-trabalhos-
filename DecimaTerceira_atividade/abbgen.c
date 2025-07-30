@@ -32,9 +32,15 @@ Arvore* insereOrdenado(Arvore* arv, void* info, int(*compara)(void*, void*)){
     return arv;
 }
 
-// Arvore* ordenaArvore(Arvore* arv, int(*compara)(void*, void*)){
-//     if(estaVaziaArvore(arv))
-// }
+Arvore* ordenaArvore(Arvore* arv, Arvore* nova, int(*compara)(void*, void*)){
+    if(estaVaziaArvore(arv)) return NULL;
+    else{
+        nova = ordenaArvore(arv->esq, nova, compara);
+        nova = ordenaArvore(arv->dir, nova, compara);
+        nova = insereOrdenado(nova, arv->info, compara);
+        return nova;
+    }
+}
 
 void imprimeArvore(Arvore* arv, void(*imprime)(void*, FILE*), FILE* saida){
     if(estaVaziaArvore(arv));

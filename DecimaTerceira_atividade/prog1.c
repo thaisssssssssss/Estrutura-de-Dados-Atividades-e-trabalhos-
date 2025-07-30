@@ -25,7 +25,12 @@ int main(){
 
     FILE* saida = fopen("saida.txt", "w");
 
-    imprimeArvore(raiz, imprimeAluno, saida);
+    //imprimeArvore(raiz, imprimeAluno, saida);
+
+    Arvore* novaRaiz = criaArvoreVazia();
+    novaRaiz = ordenaArvore(raiz, novaRaiz, comparaPorMatricula);
+
+    imprimeArvore(novaRaiz, imprimeAluno, saida);
 
     fclose(saida);
 

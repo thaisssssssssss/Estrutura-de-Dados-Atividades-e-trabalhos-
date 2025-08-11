@@ -1,5 +1,6 @@
 #include "palavra.h"
 #include "hash.h"
+#include "vetor.h"
 
 int main(){
 
@@ -20,6 +21,16 @@ int main(){
     insereHash(tabela, f);
     insereHash(tabela, g);
 
+    Palavra* maisFrequente = retornaPalavraMaisFrequente(tabela);
+    printf("Palavra mais frequente: \n");
+    imprimePalavra(maisFrequente);
+
+    Vetor* vetor = criaVetorPalavras(tabela);
+    preencheVetor(vetor, tabela);
+
+
     imprimeHash(tabela);
     liberaHash(tabela);
+
+
 }

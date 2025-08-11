@@ -22,7 +22,11 @@ char* retornaCharPalavra(Palavra* palavra){
     return palavra->palavra;
 }
 
-void imprimePalavra(Palavra* palavra){
+int retornaFrequencia(Palavra* palavra){
+    return palavra->frequencia;
+}
+
+void imprimePalavraLista(Palavra* palavra){
     Palavra* aux = palavra;
     printf("Lista inicio: (\n");
     while(aux != NULL){
@@ -30,6 +34,10 @@ void imprimePalavra(Palavra* palavra){
         aux = aux->prox;
     }
     printf(")\n");
+}
+
+void imprimePalavra(Palavra* palavra){
+    printf("%s : %d\n", palavra->palavra, palavra->frequencia);
 }
 
 int comparaPalavras(Palavra* p1, Palavra* p2){
@@ -43,12 +51,17 @@ Palavra* adicionaPalavraLista(Palavra* prim, Palavra* adicionada){
         //caso seja igual a uma palavra ja na lista
         if(!comparaPalavras(aux, adicionada)){
             aux->frequencia++;
+            liberaPalavra(adicionada);
             return prim;
         }
         aux = aux->prox;
     }
 
-    prim->prox = adicionada;
+    aux = prim;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = adicionada;
     return prim;
 }
 
@@ -65,4 +78,40 @@ void liberaPalavra(Palavra* palavra){
         atual = seguinte;
     }
     //free(palavra);
+}
+
+Palavra* PalavraMaisFrequente(Palavra* palavra){
+    Palavra* aux = palavra;
+    Palavra* nova = NULL;
+    int frequencia = 0;
+
+    while(aux != NULL){
+        if(aux->frequencia > frequencia){
+            frequencia = aux->frequencia;
+            nova = aux;
+        }
+        aux = aux->prox;
+    }
+
+
+    return nova;
+
+}
+
+int retornaTamanhoLista(Palavra* palavra){
+    Palavra* aux = palavra;
+    int tamanho = 0;
+    while(aux){
+        tamanho++;
+        aux = aux->prox;
+    }
+    return tamanho;
+}
+
+void preencheVetorPalavras(Vetor* vetor, Palavra* palavra){
+    Palavra* aux = palavra;
+    while(aux){
+        colocaPalavraVetor(vetor, palavra);
+        aux = aux->prox;
+    }
 }

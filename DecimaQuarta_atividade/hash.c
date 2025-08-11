@@ -83,7 +83,10 @@ static void redimensionaHash(Hash* tabela){
 void imprimeHash(Hash* tabela){
     int i;
     for(i = 0; i < tabela->dim; i++){
-        if(tabela->vetor[i] != NULL) imprimePalavra(tabela->vetor[i]);
+        if(tabela->vetor[i] != NULL) {
+            printf("Posicao ocupada: %d\n", i);
+            imprimePalavraLista(tabela->vetor[i]);
+        }
     }
 }
 
@@ -94,4 +97,46 @@ void liberaHash(Hash* tabela){
     }
     free(tabela->vetor);
     free(tabela);
+}
+
+Palavra* retornaPalavraMaisFrequente(Hash* tabela){
+    int i;
+    Palavra* aux = NULL;
+    Palavra* busca = NULL;
+    int frequencia = 0;
+
+    for(i = 0; i < tabela->dim; i++){
+        busca = PalavraMaisFrequente(tabela->vetor[i]);
+        if(busca){
+            printf("busca\n");
+            imprimePalavra(busca);
+            if(retornaFrequencia(busca) > frequencia){
+                aux = busca;
+                frequencia = retornaFrequencia(busca);
+            } 
+        }
+    }
+
+    
+    return aux;
+}
+
+Vetor* criaVetorPalavras(Hash* tabela){
+    int i, tamanho = 0, a;
+    for(i = 0; i < tabela->dim; i++){
+        a = retornaTamanhoLista(tabela->vetor[i]);
+        printf("Tamanho cada lista: %d\n", a);
+        tamanho += a;
+    }
+
+    Vetor* vetor = criaVetor(tamanho);
+
+    return vetor;
+}
+
+void preencheVetor(Vetor* vetor, Hash* tabela){
+    int i;
+    for(i = 0; i < tabela->dim; i++){
+        if(tabela->vetor[i] != NULL) preencheVetorPalavras(vetor, tabela->vetor[i]);
+    }
 }

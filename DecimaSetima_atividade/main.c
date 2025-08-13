@@ -69,11 +69,19 @@ int main(){
 
     fclose(fp);
 
-
+    int qtdAlunos = quantidadeItensHash(tabela);
+    printf("%d qtd\n", qtdAlunos);
+    Aluno** vetor = retornaVetor(tabela);
+    ordenaVetor(vetor, qtdAlunos);
+    
+    
     FILE* saida = fopen("saida.txt", "w");
-
+    
     imprimeHash(tabela, saida);
     liberaHash(tabela);
+    fprintf(saida, "\n");
+    imprimeVetor(vetor, qtdAlunos, saida);
+    free(vetor);
 
     fclose(saida);
     return 0;

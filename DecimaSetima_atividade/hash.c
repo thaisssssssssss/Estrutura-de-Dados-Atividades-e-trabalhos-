@@ -9,7 +9,7 @@ struct hash{
 Hash* criaHash(){
     Hash* tabela = malloc(sizeof(struct hash));
     tabela->n = 0;
-    tabela->dim = 29;
+    tabela->dim = 7;
     tabela->vetor = malloc(sizeof(struct aluno*) * tabela->dim);
 
     int i;
@@ -70,4 +70,25 @@ void liberaHash(Hash* tabela){
     }
     free(tabela->vetor);
     free(tabela);
+}
+
+int quantidadeItensHash(Hash* tabela){
+    int i, qtd = 0;
+    for(i = 0; i < tabela->dim; i++){
+        if(tabela->vetor[i]) qtd += quantidadeAlunos(tabela->vetor[i]);
+    }
+    return qtd;
+}
+
+Aluno** retornaVetor(Hash* tabela){
+    int qtd = quantidadeItensHash(tabela);
+    Aluno** vetor = malloc(sizeof(struct aluno*) * qtd);
+    int i, posicao = 0;
+
+    for(i = 0; i < tabela->dim; i++){
+        if(tabela->vetor[i]){
+            posicao = preencheVetor(vetor, tabela->vetor[i], posicao);
+        }
+    }
+    return vetor;
 }

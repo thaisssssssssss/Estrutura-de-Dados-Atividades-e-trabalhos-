@@ -18,8 +18,11 @@ Aluno* criaAluno(char* nome, int f, int p){
 }
 
 int funcao(Aluno* a){
-    int func = a->nome[0] - 'A';
-    return func;
+    int i, somador = 0;
+    for(i = 0; a->nome[i]; i++){
+        somador += a->nome[i];
+    }
+    return somador;
 }
 
 void imprimeAluno(Aluno* a, FILE* saida){
@@ -29,8 +32,8 @@ void imprimeAluno(Aluno* a, FILE* saida){
     }
 }
 
-void imprimeAlunoUnico(Aluno* a){
-    printf("%s %dP %dF\n", a->nome, a->p, a->f);
+void imprimeAlunoUnico(Aluno* a, FILE* saida){
+    fprintf(saida, "%s %dP %dF\n", a->nome, a->p, a->f);
 }
 
 void liberaAluno(Aluno* a){
@@ -69,4 +72,40 @@ Aluno* trataColisao(Aluno* lista, Aluno* novo){
         }
         aux = aux->prox;
     }
+}
+
+int quantidadeAlunos(Aluno* a){
+    int qtd = 0;
+    while(a){
+        qtd++;
+        a = a->prox;
+    }
+    return qtd;
+}
+
+int preencheVetor(Aluno** vetor, Aluno* lista, int posicao){
+    while(lista){
+        vetor[posicao] = lista;
+        posicao++;
+        lista = lista->prox;
+    }
+    return posicao;
+}
+
+void imprimeVetor(Aluno** vetor, int tamanho, FILE* saida){
+    int i;
+    for(i = 0; i < tamanho; i++){
+        imprimeAlunoUnico(vetor[i], saida);
+    }
+}
+
+int compara(const void* a, const void* b){
+    Aluno* a1 = *(Aluno**)a;
+    Aluno* a2 = *(Aluno**)b;
+
+    return strcmp(a1->nome, a2->nome);
+}
+
+void ordenaVetor(Aluno** vetor, int tamanho){
+    qsort(vetor, tamanho, sizeof(struct aluno*), compara);
 }

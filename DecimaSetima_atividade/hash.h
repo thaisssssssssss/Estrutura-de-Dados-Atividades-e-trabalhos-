@@ -18,6 +18,9 @@ void imprimeHash(Hash* tabela, FILE* saida);
 
 void liberaHash(Hash* tabela);
 
+int quantidadeItensHash(Hash* tabela);
+
+Aluno** retornaVetor(Hash* tabela);
 
 
 
